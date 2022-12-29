@@ -15,3 +15,7 @@ A simple Blender addon to create Asset Library fast for GTA 5 / FiveM.
 1 - Import your YDRs using Sollumz (check "Join Geometries" when importing)
 
 2 - Click on the only button "Do it ! Just do it !"
+
+## Video Tutorial
+
+[<img src="https://img.youtube.com/vi/PObeQq58j8Y/maxresdefault.jpg" width="50%">](https://youtu.be/PObeQq58j8Y)
