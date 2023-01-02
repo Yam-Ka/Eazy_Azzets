@@ -2,6 +2,12 @@
 
 A simple Blender addon to create Asset Library fast for GTA 5 / FiveM.
 
+## Requirements
+
+- Blender (3.3 is recommended)
+
+- Sollumz Add-on (https://github.com/Skylumz/Sollumz)
+
 ## Install
 
 1 - Download Zip file and extract "Eazy_azzets.py"
@@ -15,6 +21,8 @@ A simple Blender addon to create Asset Library fast for GTA 5 / FiveM.
 1 - Import your YDRs using Sollumz (check "Join Geometries" when importing)
 
 2 - Click on the only button "Do it ! Just do it !"
+
+3 - Save this blend file where your User Library is located (Preferences > File paths > Assets Libraries), so you can access it on all your projects.
 
 ## Video Tutorial
 
