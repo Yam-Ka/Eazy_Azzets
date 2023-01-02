@@ -4,7 +4,7 @@ A simple Blender addon to create Asset Library fast for GTA 5 / FiveM.
 
 ## Install
 
-1 - Download Zip file and extract "Easy_asset.py"
+1 - Download Zip file and extract "Eazy_azzets.py"
 
 2 - Go to Blender Preferences > Addons > Install and choose your extracted file
 
