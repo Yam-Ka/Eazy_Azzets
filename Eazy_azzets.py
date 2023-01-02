@@ -1,7 +1,7 @@
 bl_info = {
 	"name":"Eazy Azzets",
 	"author": "Yam K.",
-	"version": (0,1),
+	"version": (0,2),
 	"blender": (2,80,0),
 	"location": "",
 	"Description": "Making asset browser for GTA 5 Easier",
@@ -12,24 +12,19 @@ bl_info = {
 import bpy
 
 def eazy_azzets():
-    for obj in bpy.context.scene.objects:
-         if obj.name.endswith(".#dr"):
-          obj.parent = None
-
-    for obj in bpy.context.scene.objects:
-       if not obj.name.endswith(".#dr") and not obj.asset_data:
-         bpy.data.objects.remove(obj)
-
-    for obj in bpy.context.scene.objects:
-        if obj.name.endswith(".#dr"):
-            obj.name = obj.name[:-4]
-
-    for obj in bpy.context.scene.objects:
-       obj.asset_mark()
-       obj.asset_generate_preview()
-
+    
     objects = bpy.context.scene.objects
-
+    
+    for obj in objects:
+        if obj.name.endswith('.#dr'):
+         obj.parent = None
+         obj.name = obj.name[:-4]
+         obj.asset_mark()
+         obj.asset_generate_preview()
+        if not obj.asset_data:
+         bpy.data.objects.remove(obj)
+           
+    
     num_rows = num_columns = int(len(objects) ** 0.5)
 
     total_dimensions = [sum(obj.dimensions[axis] for obj in objects) for axis in range(2)]
@@ -62,16 +57,7 @@ class DoItButton(bpy.types.Operator):
     def execute(self, context):
         eazy_azzets()
         return {'FINISHED'}
-
-def register():
-    bpy.utils.register_class(DoItButton)
-
-def unregister():
-    bpy.utils.unregister_class(DoItButton)
-
-if __name__ == "__main__":
-    register()
-    
+        
 class EazyAzzetsPanel(bpy.types.Panel):
     """Eazy Azzets panel"""
     bl_label = "Eazy Azzets"
@@ -83,7 +69,7 @@ class EazyAzzetsPanel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         layout.operator("object.eazy_azzets")
-
+        
 def register():
     bpy.utils.register_class(DoItButton)
     bpy.utils.register_class(EazyAzzetsPanel)
@@ -93,7 +79,7 @@ def unregister():
     bpy.utils.unregister_class(EazyAzzetsPanel)
 
 if __name__ == "__main__":
-    register()
+    register()        
 
 
 
