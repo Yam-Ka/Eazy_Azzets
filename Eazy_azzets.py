@@ -23,31 +23,22 @@ def eazy_azzets():
          obj.asset_generate_preview()
         if not obj.asset_data:
          bpy.data.objects.remove(obj)
-           
-    
 
     num_objects = len(objects)
     num_columns = int(num_objects ** 0.5)
     num_rows = num_columns if num_columns * num_columns == num_objects else num_columns + 1
 
-
     max_dimensions = [max(obj.dimensions[axis] for obj in objects) for axis in range(2)]
-
 
     margin = 1
 
-
     total_margin = [(num_columns - 1) * margin, (num_rows - 1) * margin]
-
 
     total_dimensions = [num_columns * max_dimensions[0] + total_margin[0], num_rows * max_dimensions[1] + total_margin[1]]
 
-
     center = [total_dimensions[axis] / 2 for axis in range(2)]
 
-
     current_position = [center[0] - (total_dimensions[0] / 2), center[1] - (total_dimensions[1] / 2)]
-
 
     for i, obj in enumerate(objects):
         obj.location.x = current_position[0] + max_dimensions[0] / 2
