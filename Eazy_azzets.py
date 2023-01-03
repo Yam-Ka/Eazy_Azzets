@@ -1,7 +1,7 @@
 bl_info = {
 	"name":"Eazy Azzets",
 	"author": "Yam K.",
-	"version": (0,2),
+	"version": (0,3),
 	"blender": (2,80,0),
 	"location": "",
 	"Description": "Making asset browser for GTA 5 Easier",
@@ -25,28 +25,38 @@ def eazy_azzets():
          bpy.data.objects.remove(obj)
            
     
-    num_rows = num_columns = int(len(objects) ** 0.5)
 
-    total_dimensions = [sum(obj.dimensions[axis] for obj in objects) for axis in range(2)]
+    num_objects = len(objects)
+    num_columns = int(num_objects ** 0.5)
+    num_rows = num_columns if num_columns * num_columns == num_objects else num_columns + 1
 
-    margin = 1  
+
+    max_dimensions = [max(obj.dimensions[axis] for obj in objects) for axis in range(2)]
+
+
+    margin = 1
+
 
     total_margin = [(num_columns - 1) * margin, (num_rows - 1) * margin]
 
-    total_dimensions = [total_dimensions[axis] + total_margin[axis] for axis in range(2)]
+
+    total_dimensions = [num_columns * max_dimensions[0] + total_margin[0], num_rows * max_dimensions[1] + total_margin[1]]
+
 
     center = [total_dimensions[axis] / 2 for axis in range(2)]
 
+
     current_position = [center[0] - (total_dimensions[0] / 2), center[1] - (total_dimensions[1] / 2)]
 
-    for i, obj in enumerate(objects):
-        obj.location.x = current_position[0] + obj.dimensions.x / 2
-        obj.location.y = current_position[1] + obj.dimensions.y / 2
 
-        current_position[0] += obj.dimensions.x + margin
+    for i, obj in enumerate(objects):
+        obj.location.x = current_position[0] + max_dimensions[0] / 2
+        obj.location.y = current_position[1] + max_dimensions[1] / 2
+
+        current_position[0] += max_dimensions[0] + margin
         if (i + 1) % num_columns == 0:
             current_position[0] = center[0] - (total_dimensions[0] / 2)
-            current_position[1] += obj.dimensions.y + margin
+            current_position[1] += max_dimensions[1] + margin
 
 class DoItButton(bpy.types.Operator):
     """Run the Eazy Azzets script"""
