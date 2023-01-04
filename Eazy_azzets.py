@@ -2,7 +2,7 @@ bl_info = {
 	"name":"Eazy Azzets",
 	"author": "Yam K.",
 	"version": (0,3),
-	"blender": (2,80,0),
+	"blender": (3, 3, 0),
 	"location": "",
 	"Description": "Making asset browser for GTA 5 Easier",
 	"warning": "",
